@@ -1,9 +1,9 @@
 package edu.epam.compchain.parser.impl;
 
 import edu.epam.compchain.composite.Component;
-import edu.epam.compchain.composite.impl.Composite;
 import edu.epam.compchain.composite.impl.Letter;
 import edu.epam.compchain.composite.impl.PunctuationMark;
+import edu.epam.compchain.composite.impl.Word;
 import edu.epam.compchain.parser.Handler;
 
 public class SymbolParser implements Handler {
@@ -12,7 +12,7 @@ public class SymbolParser implements Handler {
 
     @Override
     public Component handleRequest(String word) {
-        Composite composite = new Composite();
+        Word composite = new Word();
         String [] symbols = word.split(DELIMITER);
         for (String symbol : symbols) {
             if (symbol.matches(LETTER_REGEX)) {

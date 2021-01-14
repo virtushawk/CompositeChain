@@ -1,7 +1,8 @@
 package edu.epam.compchain.parser.impl;
 
 import edu.epam.compchain.composite.Component;
-import edu.epam.compchain.composite.impl.Composite;
+import edu.epam.compchain.composite.impl.Lexeme;
+import edu.epam.compchain.composite.impl.Word;
 import edu.epam.compchain.parser.Handler;
 
 import java.util.List;
@@ -19,12 +20,12 @@ public class WordParser implements Handler {
     @Override
     public Component handleRequest(String lexeme) {
         List<String> words = Stream.of(lexeme.split(DELIMITER)).collect(Collectors.toList());
-        Composite composite = new Composite();
+        Lexeme composite = new Lexeme();
         if (parser == null) {
             return composite;
         } else {
             for (String word : words) {
-                Composite temp = (Composite) parser.handleRequest(word);
+                Word temp = (Word) parser.handleRequest(word);
                 composite.add(temp);
             }
         }

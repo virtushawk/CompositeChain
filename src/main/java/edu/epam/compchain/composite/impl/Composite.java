@@ -3,6 +3,7 @@ package edu.epam.compchain.composite.impl;
 import edu.epam.compchain.composite.Component;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class Composite implements Component {
@@ -24,12 +25,53 @@ public class Composite implements Component {
         return components.get(index);
     }
 
-    public List<Component> getComponents() {
-        return new ArrayList<>(components);
+    @Override
+    public int size() {
+        return components.size();
     }
 
-    public void addAll(Composite composite) {
-        components.addAll(composite.getComponents());
+    @Override
+    public Component longestWord() {
+        Component longest = new Word();
+        for (Component component : components) {
+            Component temp = component.longestWord();
+            if (longest.size() < temp.size()) {
+                longest = temp;
+            }
+        }
+        return longest;
+    }
+
+    @Override
+    public Component longestWordSentence() {
+        Sentence longest = new Sentence();
+        for (Component component : components) {
+            Sentence temp = (Sentence) component.longestWordSentence();
+            if (longest.longestWord().size()< component.longestWord().size()) {
+                longest = temp;
+            }
+        }
+        return longest;
+    }
+
+    @Override
+    public void removeSentence(int number) {
+        for (Component component : components) {
+            component.removeSentence(number);
+        }
+    }
+
+    public void addAll(List<Component> components) {
+        this.components.addAll(components);
+    }
+
+    @Override
+    public Component sort(Comparator<? super Component> comparator) {
+        List<Component> listResult = new ArrayList<>(components);
+        listResult.sort(comparator);
+        Composite composite = new Composite();
+        composite.addAll(listResult);
+        return composite;
     }
 
     @Override
@@ -39,29 +81,5 @@ public class Composite implements Component {
             text.append(component);
         }
         return text.toString();
-    }
-
-    public int numberOfLetters() {
-        int count = 0;
-        for (Component component : components) {
-            if (component instanceof Composite) {
-               count += ((Composite) component).numberOfLetters();
-            } else if (component instanceof  Letter) {
-                count++;
-            }
-        }
-        return count;
-    }
-
-    public int numberOfPunctuationMarks() {
-        int count = 0;
-        for (Component component : components) {
-            if (component instanceof Composite) {
-                count += ((Composite) component).numberOfLetters();
-            } else if (component instanceof  PunctuationMark) {
-                count++;
-            }
-        }
-        return count;
     }
 }

@@ -1,11 +1,14 @@
 package edu.epam.compchain.parser;
 
-import edu.epam.compchain.composite.impl.Composite;
+import edu.epam.compchain.composite.Component;
+import edu.epam.compchain.composite.impl.*;
 import edu.epam.compchain.exception.TextReaderException;
 import edu.epam.compchain.parser.impl.*;
 import edu.epam.compchain.reader.TextReader;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
+import java.util.Comparator;
 
 public class TextParserTest {
     public String text;
@@ -25,8 +28,7 @@ public class TextParserTest {
         SentenceParser sentenceParser = new SentenceParser(lexemeParser);
         ParagraphParser parser = new ParagraphParser(sentenceParser);
         Composite composite = (Composite) parser.handleRequest(text);
-        System.out.println(composite.toString());
-        System.out.println("letters : " + composite.numberOfLetters());
-        System.out.println("Punctuation Marks : " + composite.numberOfPunctuationMarks());
+        composite.removeSentence(3);
+        System.out.println(composite);
     }
 }

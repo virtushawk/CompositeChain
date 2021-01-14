@@ -1,7 +1,8 @@
 package edu.epam.compchain.parser.impl;
 
 import edu.epam.compchain.composite.Component;
-import edu.epam.compchain.composite.impl.Composite;
+import edu.epam.compchain.composite.impl.Paragraph;
+import edu.epam.compchain.composite.impl.Sentence;
 import edu.epam.compchain.parser.Handler;
 
 import java.util.ArrayList;
@@ -25,13 +26,13 @@ public class SentenceParser implements Handler {
         while (matcher.find()) {
             sentences.add(matcher.group());
         }
-        Composite composite = new Composite();
+        Paragraph composite = new Paragraph();
         if (parser == null) {
             return composite;
         }
         else {
             for (String sentence : sentences) {
-                Composite temp =(Composite) parser.handleRequest(sentence);
+                Sentence temp =(Sentence) parser.handleRequest(sentence);
                 composite.add(temp);
             }
         }
