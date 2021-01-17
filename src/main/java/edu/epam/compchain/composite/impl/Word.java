@@ -31,12 +31,12 @@ public class Word implements Component {
     }
 
     @Override
-    public Component longestWord() {
+    public Component findLongestWord() {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public Component longestWordSentence() {
+    public Component findLongestWordSentence() {
         throw new UnsupportedOperationException();
     }
 

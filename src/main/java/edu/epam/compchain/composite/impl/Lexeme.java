@@ -30,12 +30,18 @@ public class Lexeme implements Component {
     }
 
     @Override
-    public Component longestWord() {
-        throw new UnsupportedOperationException();
+    public Component findLongestWord() {
+        Component longest = new Word();
+        for (Component component : lexeme) {
+            if (longest.size() < component.size()) {
+                longest = component;
+            }
+        }
+        return longest;
     }
 
     @Override
-    public Component longestWordSentence() {
+    public Component findLongestWordSentence() {
         throw new UnsupportedOperationException();
     }
 

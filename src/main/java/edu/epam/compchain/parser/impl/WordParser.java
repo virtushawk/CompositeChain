@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class WordParser implements Handler {
-    private static final String DELIMITER ="((?<=.)|(?=.))";
+    private static final String DELIMITER ="((?<=[^a-zA-Z])|(?=[^a-zA-Z]))";
     private SymbolParser parser;
 
     public WordParser(SymbolParser parser) {

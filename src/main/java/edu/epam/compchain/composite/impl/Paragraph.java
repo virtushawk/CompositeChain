@@ -31,10 +31,10 @@ public class Paragraph implements Component {
     }
 
     @Override
-    public Component longestWord() {
+    public Component findLongestWord() {
         Component longest = new Word();
         for (Component component : paragraph) {
-            Component temp = component.longestWord();
+            Component temp = component.findLongestWord();
             if (longest.size() < temp.size()) {
                 longest = temp;
             }
@@ -43,10 +43,10 @@ public class Paragraph implements Component {
     }
 
     @Override
-    public Component longestWordSentence() {
+    public Component findLongestWordSentence() {
         Sentence longest = new Sentence();
         for (Component component : paragraph) {
-            if (longest.longestWord().size()< component.longestWord().size()) {
+            if (longest.findLongestWord().size()< component.findLongestWord().size()) {
                 longest = (Sentence) component;
             }
         }

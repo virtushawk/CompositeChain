@@ -27,7 +27,7 @@ public class TextReader {
     }
 
     public String readStringFromFile(String path) throws TextReaderException {
-        String text = null;
+        String text;
         try {
             text = Files.readString(Paths.get(path), StandardCharsets.UTF_8);
         } catch (IOException e) {

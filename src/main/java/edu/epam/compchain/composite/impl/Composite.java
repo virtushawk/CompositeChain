@@ -31,10 +31,10 @@ public class Composite implements Component {
     }
 
     @Override
-    public Component longestWord() {
+    public Component findLongestWord() {
         Component longest = new Word();
         for (Component component : components) {
-            Component temp = component.longestWord();
+            Component temp = component.findLongestWord();
             if (longest.size() < temp.size()) {
                 longest = temp;
             }
@@ -43,11 +43,11 @@ public class Composite implements Component {
     }
 
     @Override
-    public Component longestWordSentence() {
+    public Component findLongestWordSentence() {
         Sentence longest = new Sentence();
         for (Component component : components) {
-            Sentence temp = (Sentence) component.longestWordSentence();
-            if (longest.longestWord().size()< component.longestWord().size()) {
+            Sentence temp = (Sentence) component.findLongestWordSentence();
+            if (longest.findLongestWord().size()< component.findLongestWord().size()) {
                 longest = temp;
             }
         }

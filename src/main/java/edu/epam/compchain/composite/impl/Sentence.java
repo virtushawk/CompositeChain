@@ -31,18 +31,19 @@ public class Sentence implements Component {
     }
 
     @Override
-    public Component longestWord() {
+    public Component findLongestWord() {
         Component longest = new Word();
         for (Component component : sentence) {
-            if (longest.size() < component.size()) {
-                longest = component;
+            Component temp = component.findLongestWord();
+            if (longest.size() < temp.size()) {
+                longest = temp;
             }
         }
         return longest;
     }
 
     @Override
-    public Component longestWordSentence() {
+    public Component findLongestWordSentence() {
         throw new UnsupportedOperationException();
     }
 

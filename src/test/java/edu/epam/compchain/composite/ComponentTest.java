@@ -3,11 +3,12 @@ package edu.epam.compchain.composite;
 import edu.epam.compchain.composite.impl.Composite;
 import edu.epam.compchain.parser.impl.*;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class ComponentTest {
-    ParagraphParser parser;
+    public ParagraphParser parser;
 
     @BeforeClass
     public void beforeClass() {
@@ -20,10 +21,10 @@ public class ComponentTest {
 
     @Test
     public void longestWordTest() {
-        String text = "aaaa vvvvv?. bbb longestWord";
+        String text = "aaaa vvvvv?. bbb longestWord.net";
         String expected = "longestWord";
         Composite composite = (Composite) parser.handleRequest(text);
-        String actual = composite.longestWord().toString();
+        String actual = composite.findLongestWord().toString();
         Assert.assertEquals(actual,expected);
     }
 
@@ -32,13 +33,13 @@ public class ComponentTest {
         String text = "aaaa vvvvv?. bbb longestWord";
         String expected = "bbb longestWord";
         Composite composite = (Composite) parser.handleRequest(text);
-        Component component = composite.longestWordSentence();
+        Component component = composite.findLongestWordSentence();
         String actual = component.toString().trim();
         Assert.assertEquals(actual,expected);
     }
 
     @Test
-    public void removeSentence() {
+    public void removeSentenceTest() {
         String text = "aaaa vvvvv? bbb longestWord. 3 word sentence";
         String expected = "3 word sentence";
         int numberOfWords = 3;
@@ -47,4 +48,10 @@ public class ComponentTest {
         String actual = composite.toString().trim();
         Assert.assertEquals(actual,expected);
     }
+
+    @AfterClass
+    public void afterClass() {
+        parser = null;
+    }
+
 }

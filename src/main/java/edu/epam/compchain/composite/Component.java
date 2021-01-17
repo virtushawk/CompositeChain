@@ -7,8 +7,8 @@ public interface Component {
     void remove(Component component);
     Component get(int index);
     int size();
-    Component longestWord();
-    Component longestWordSentence();
+    Component findLongestWord();
+    Component findLongestWordSentence();
     void removeSentence(int number);
     Component sort(Comparator<? super Component> comparator);
 }
